@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -20,5 +21,10 @@ public class SecondActivity extends AppCompatActivity {
         greetings.append(userNameValue);
         greetings.append("!");
 
+    }
+
+    public void goToFirstActivity(View view) {
+        Intent intent = new Intent(SecondActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 }
