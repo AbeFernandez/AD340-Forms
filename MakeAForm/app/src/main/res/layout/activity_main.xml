@@ -54,7 +54,7 @@
         android:onClick="goToSecondActivity"/>
 
     <TextView
-        android:id="@+id/error_messege"
+        android:id="@+id/error_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

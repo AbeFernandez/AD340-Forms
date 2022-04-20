@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private EditText userName, dateIn;
-    private TextView errorMessege;
+    private TextView errorMessage;
     DatePickerDialog.OnDateSetListener setListener;
 
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userName = findViewById(R.id.username);
         dateIn = findViewById(R.id.date);
-        errorMessege = findViewById(R.id.error_messege);
+        MainActivity.this.errorMessage = findViewById(R.id.error_message);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
                         Calendar minAdultAge = new GregorianCalendar();
                         minAdultAge.add(Calendar.YEAR, -18);
                         if (minAdultAge.before(userAge)) {
-                            errorMessege.setText("You are under 18");
-                            errorMessege.setTextColor(getResources().getColor(R.color.red));
+                            MainActivity.this.errorMessage.setText("You are under 18");
+                            MainActivity.this.errorMessage.setTextColor(getResources().getColor(R.color.red));
                         }else{
                             month = month + 1;
                             String date = month + "/" + day + "/" + year;
                             dateIn.setText(date);
-                            errorMessege.setText("Good!");
+                            MainActivity.this.errorMessage.setText("Good!");
                         }
                     }
                 }, year, month, day);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToSecondActivity(View view) {
         String user_name = userName.getText().toString();
-        String user_date = errorMessege.getText().toString();
+        String user_date = MainActivity.this.errorMessage.getText().toString();
         if (user_date != "You are under 18"){
             Intent intent = new Intent(MainActivity.this,SecondActivity.class);
 
