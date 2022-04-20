@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                             month = month + 1;
                             String date = month + "/" + day + "/" + year;
                             dateIn.setText(date);
-                            errorMessege.setText("good!");
+                            errorMessege.setText("Good!");
                         }
                     }
                 }, year, month, day);
@@ -62,9 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToSecondActivity(View view) {
         String user_name = userName.getText().toString();
-        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+        String user_date = errorMessege.getText().toString();
+        if (user_date != "You are under 18"){
+            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
 
-        intent.putExtra("keyname", user_name);
-        startActivity(intent);
+            intent.putExtra("keyname", user_name);
+            startActivity(intent);
+        }
+
     }
 }
