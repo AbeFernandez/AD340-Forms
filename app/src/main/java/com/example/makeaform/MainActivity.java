@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText userName, dateIn;
+    private EditText name, email, userName, dateIn;
     private TextView errorMessage;
     DatePickerDialog.OnDateSetListener setListener;
 
@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
         userName = findViewById(R.id.username);
         dateIn = findViewById(R.id.date);
         MainActivity.this.errorMessage = findViewById(R.id.error_message);
@@ -42,15 +44,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         Calendar userAge = new GregorianCalendar(year,month,day);
                         Calendar minAdultAge = new GregorianCalendar();
+                        month = month + 1;
+                        String date = month + "/" + day + "/" + year;
+                        dateIn.setText(date);
+
                         minAdultAge.add(Calendar.YEAR, -18);
                         if (minAdultAge.before(userAge)) {
                             MainActivity.this.errorMessage.setText("You are under 18");
                             MainActivity.this.errorMessage.setTextColor(getResources().getColor(R.color.red));
                         }else{
-                            month = month + 1;
-                            String date = month + "/" + day + "/" + year;
-                            dateIn.setText(date);
+
                             MainActivity.this.errorMessage.setText("Good!");
+
                         }
                     }
                 }, year, month, day);
@@ -61,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void goToSecondActivity(View view) {
+        String name_field = name.getText().toString();
+        String email_field = email.getText().toString();
         String user_name = userName.getText().toString();
         String user_date = MainActivity.this.errorMessage.getText().toString();
-        if (user_date != "You are under 18"){
+        if (user_date != "You are under 18" && user_date != "" && name_field != "" && email_field != "" && user_name != ""){
             Intent intent = new Intent(MainActivity.this,SecondActivity.class);
 
             intent.putExtra("keyname", user_name);
