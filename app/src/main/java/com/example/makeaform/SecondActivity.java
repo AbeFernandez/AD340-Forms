@@ -24,7 +24,6 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     public void goToFirstActivity(View view) {
-        Intent intent = new Intent(SecondActivity.this,MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

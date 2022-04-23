@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,18 +65,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 
     public void goToSecondActivity(View view) {
         String name_field = name.getText().toString();
         String email_field = email.getText().toString();
         String user_name = userName.getText().toString();
         String user_date = MainActivity.this.errorMessage.getText().toString();
+
         if (user_date != "You are under 18" && user_date != "" && name_field != "" && email_field != "" && user_name != ""){
             Intent intent = new Intent(MainActivity.this,SecondActivity.class);
 
             intent.putExtra("keyname", user_name);
             startActivity(intent);
         }
-
     }
 }
